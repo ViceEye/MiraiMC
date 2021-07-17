@@ -1,9 +1,9 @@
 package MiraiMC;
 
+import cn.nukkit.event.HandlerList;
+import cn.nukkit.event.plugin.PluginEvent;
+import cn.nukkit.plugin.Plugin;
 import net.mamoe.mirai.event.events.BotOnlineEvent;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * 快速创建Mirai事件
@@ -11,16 +11,16 @@ import org.jetbrains.annotations.NotNull;
  * 所有Mirai事件均有方法getBot，因此使用子方法getId作为基础方法
  * @author DreamVoid
  */
-public class EventTemplate extends Event {
-    public EventTemplate(BotOnlineEvent event) {
-        super(true);
+public class EventTemplate extends PluginEvent {
+    public EventTemplate(Plugin plugin, BotOnlineEvent event) {
+        super(plugin);
         this.event = event;
     }
 
     private static final HandlerList handlers = new HandlerList();
     private final BotOnlineEvent event;
 
-    public @NotNull HandlerList getHandlers() { return handlers; }
+    public static HandlerList getHandlers() { return handlers; }
     public static HandlerList getHandlerList() { return handlers; }
 
     /**
